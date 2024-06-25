@@ -1,81 +1,111 @@
 # Job Application Helper
 
-This Streamlit app helps job applicants by analyzing job postings and generating tailored resumes, profiles, and interview materials. The app uses the CrewAI framework to define and manage agents and tasks for job application preparation.
+This repository contains a Streamlit application designed to assist job applicants in tailoring their resumes, creating professional profiles, and preparing for interviews. By leveraging the power of AI agents and various tools, the app streamlines the job application process.
 
-## Features
+## Table of Contents
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Repository Structure](#repository-structure)
+- [Agents and Tasks](#agents-and-tasks)
+- [License](#license)
+- [Acknowledgements](#Acknowledgements)
 
-- **Job Posting Analysis:** Extracts key skills, qualifications, and experiences from job postings.
-- **Personal and Professional Profiling:** Compiles detailed profiles based on GitHub URLs and personal write-ups.
-- **Resume Tailoring:** Enhances resumes to highlight relevant qualifications and experiences.
-- **Interview Preparation:** Generates potential interview questions and talking points based on the tailored resume and job requirements.
+## Introduction
+
+The Job Application Helper app utilizes a set of AI agents to perform the following tasks:
+1. Research job postings to identify key requirements.
+2. Compile detailed personal and professional profiles from various sources.
+3. Tailor resumes to highlight the most relevant skills and experiences.
+4. Generate interview questions and talking points based on the tailored resume and job requirements.
 
 ## Installation
 
+To install and run the application, follow these steps:
+
 1. Clone the repository:
-    ```sh
+    ```bash
     git clone https://github.com/iblouse/Resume-Writer.git
     cd Resume-Writer
     ```
 
-2. Create a virtual environment and activate it:
-    ```sh
-    python -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+2. Create and activate a virtual environment:
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
     ```
 
-3. Install the required packages:
-    ```sh
+3. Install the required dependencies:
+    ```bash
     pip install -r requirements.txt
     ```
 
+4. Set up the necessary API keys:
+    - Add your OpenAI API key to the environment.
+    - Add your SERPER API key to the environment.
+
 ## Usage
 
-1. Ensure you have the necessary API keys for OpenAI and Serper. Set them in your environment variables or use the provided utility functions.
+To start the Streamlit application, run the following command in your terminal:
+```bash
+streamlit run job_applic_app.py
+```
 
-2. Run the Streamlit app:
-    ```sh
-    streamlit run job_applic_app.py
-    ```
+You will be prompted to enter the job posting URL, GitHub URL, and a personal write-up. The application will generate a tailored resume and interview materials based on the provided inputs.
 
-3. Open your web browser and navigate to `http://localhost:8501`.
+## Repository Structure
 
-4. Enter the job posting URL, GitHub URL, and a personal write-up in the provided fields.
+- `job_applic_app.py`: Main application file for Streamlit.
+- `requirements.txt`: File containing the list of dependencies.
+- `utils.py`: Utility functions for fetching API keys.
+- `base_resume.md`: Template for the resume.
+- `tailored_resume.md`: File where the tailored resume is saved.
+- `interview_materials.md`: File where the interview materials are saved.
 
-5. Click on the "Generate Application Materials" button to start the process.
+## Agents and Tasks
 
-6. The app will display the generated resume and interview materials.
+### Agents
 
-## Files
+1. **Tech Job Researcher**
+   - Role: Analyze job postings to help job applicants.
+   - Tools: ScrapeWebsiteTool, SerperDevTool.
 
-- **job_applic_app.py:** Main Streamlit app file.
-- **requirements.txt:** Lists the dependencies required to run the app.
-- **utils.py:** Contains utility functions for fetching API keys.
+2. **Personal Profiler for Engineers**
+   - Role: Research job applicants to help them stand out in the job market.
+   - Tools: ScrapeWebsiteTool, SerperDevTool, FileReadTool, MDXSearchTool.
 
-## Example
+3. **Resume Strategist for Engineers**
+   - Role: Tailor resumes to highlight relevant skills and experiences.
+   - Tools: ScrapeWebsiteTool, SerperDevTool, FileReadTool, MDXSearchTool.
 
-Here is an example of how to use the app:
+4. **Engineering Interview Preparer**
+   - Role: Create interview questions and talking points based on the resume and job requirements.
+   - Tools: ScrapeWebsiteTool, SerperDevTool, FileReadTool, MDXSearchTool.
 
-1. Enter the job posting URL:
-    ```
-    [https://jobs.lever.co/AIFund/6c82e23e-d954-4dd8-a734-c0c2c5ee00f1?lever-origin=applied&lever-source%5B%5D=AI+Fund](https://www.linkedin.com/jobs/search/?currentJobId=3952693344&keywords=cvs%20health&origin=BLENDED_SEARCH_RESULT_NAVIGATION_JOB_CARD&originToLandingJobPostings=3958577063%2C3941885038%2C3952693344)
-    ```
+### Tasks
 
-2. Enter the GitHub URL:
-    ```
-    https://github.com/iblouse
-    ```
+1. **Research Task**
+   - Description: Analyze the job posting URL to extract key skills, experiences, and qualifications.
+   - Agent: Tech Job Researcher.
 
-3. Enter the personal write-up:
-    ```markdown
-    An AWS Certified Machine Learning Specialist and seasoned Data Scientist with a Master’s in Statistics & Applied Mathematics brings a wealth of experience in data analysis, predictive modeling, and cloud technologies. With adept skills in Google Cloud services, particularly Vertex AI and BigQuery, high-impact solutions can be delivered within analytics and behavior change teams. The background aligns with the sophisticated use of Google Cloud Platform to analyze petabytes of healthcare data, complemented by certifications in machine learning and cloud platforms. Enthusiastic about employing advanced analytics and collaborative approaches to support the vision for a total approach to health and wellness through innovative data-driven strategies.
-    ```
+2. **Profile Task**
+   - Description: Compile a detailed personal and professional profile.
+   - Agent: Personal Profiler for Engineers.
 
-4. Click on "Generate Application Materials" to get the tailored resume and interview materials.
+3. **Resume Strategy Task**
+   - Description: Tailor the resume to highlight the most relevant areas.
+   - Agent: Resume Strategist for Engineers.
 
-## Contributing
+4. **Interview Preparation Task**
+   - Description: Create interview questions and talking points based on the tailored resume and job requirements.
+   - Agent: Engineering Interview Preparer.
 
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+
+## Acknowledgements
+
+- Special thanks to the `crewai` and `openai` teams for their incredible tools and APIs.
